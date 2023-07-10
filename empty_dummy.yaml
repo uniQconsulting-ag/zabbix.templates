@@ -1,0 +1,15 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-01-27T10:58:35Z'
+  groups:
+    -
+      uuid: c5c6251da5fb4a21ae6a5f9331073e70
+      name: Templates/Import
+  templates:
+    -
+      uuid: 0076430f15dd4e3982b9e305fc16bbc5
+      template: 'Empty Dummy'
+      name: 'Empty Dummy'
+      groups:
+        -
+          name: Templates/Import

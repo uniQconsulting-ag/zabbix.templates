@@ -1,0 +1,567 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-01-27T11:00:25Z'
+  groups:
+    -
+      uuid: c5c6251da5fb4a21ae6a5f9331073e70
+      name: Templates/Import
+  templates:
+
+    -
+      uuid: 483818d5867743c4b886a77791138a9c
+      template: 'USV Benning'
+      name: 'USV Benning'
+      description: 'Benning USV'
+      groups:
+        -
+          name: Templates/Import
+      items:
+        -
+          uuid: cdc4ead99f5e46879cc2418598436ffa
+          name: 'BypassPower L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.4.1
+          key: BypassPowerL1
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Bypass Power L1'
+        -
+          uuid: d7f23af7bbb14da0af0754dae2263be7
+          name: 'BypassPower L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.4.2
+          key: BypassPowerL2
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Bypass Power L2'
+        -
+          uuid: c5384c1ed4334f8ab23b68d0b22b4ca2
+          name: 'BypassPower L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.4.3
+          key: BypassPowerL3
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Bypass Power L3'
+        -
+          uuid: 35403e47071f42309d949129ef050255
+          name: 'OutputPercentLoad L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.5.1
+          key: OutputPercentLoadL1
+          delay: '60'
+          history: 7d
+          units: '%'
+          description: 'Output Load L1 %'
+        -
+          uuid: 1f4f5eca247e443b9880316f90712d23
+          name: 'OutputPercentLoad L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.5.2
+          key: OutputPercentLoadL2
+          delay: '60'
+          history: 7d
+          units: '%'
+          description: 'Output Load L2 %'
+        -
+          uuid: 636444c24bd34405b1cb180746230fd7
+          name: 'OutputPercentLoad L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.5.3
+          key: OutputPercentLoadL3
+          delay: '60'
+          history: 7d
+          units: '%'
+          description: 'Output Load L3 %'
+        -
+          uuid: b3ca24d574554af984fa4d1fc379caa1
+          name: 'OutputPower L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.4.1
+          key: OutputPowerL1
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Output Power L1'
+        -
+          uuid: abbcdc763dd64745999ac47c86bf1035
+          name: 'OutputPower L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.4.2
+          key: OutputPowerL2
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Output Power L2'
+        -
+          uuid: f26f753154ed4bf6a674e62b04fae4ab
+          name: 'OutputPower L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.4.3
+          key: OutputPowerL3
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'Output Power L3'
+        -
+          uuid: 2eb6fc47972e44cc97f77a3afd912075
+          name: AlarmsPresent
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.6.1.0
+          key: upsAlarmsPresent
+          delay: '60'
+          history: 7d
+          description: 'Alarms Present'
+          triggers:
+            -
+              uuid: e9dde54225ff4880991248eb47c8d7b6
+              expression: 'last(/USV Benning/upsAlarmsPresent)>0'
+              name: AlarmsPresent
+              priority: AVERAGE
+              description: 'Alarm wenn nicht 0'
+        -
+          uuid: 5aec173e77fa412fbc8d1b8d49834e14
+          name: BatteryStatus
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.2.1.0
+          key: upsBatteryStatus
+          delay: '60'
+          history: 7d
+          description: 'Status der USV-Batterie'
+          valuemap:
+            name: upsBattStatusBenning
+          triggers:
+            -
+              uuid: 64a24c7ea85f4ff1bde49ff377e8c5f4
+              expression: 'last(/USV Benning/upsBatteryStatus)=3'
+              name: 'UPS low'
+              priority: HIGH
+        -
+          uuid: 185fdac394e74267a114d70458806017
+          name: 'BypassCurrent L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.3.1
+          key: upsBypassCurrentL1
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Bypass L1'
+          preprocessing:
+            -
+              type: MULTIPLIER
+              parameters:
+                - '0.1'
+        -
+          uuid: c2d8ebc1c33b40b48f692f81764a60e7
+          name: 'BypassCurrent L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.3.2
+          key: upsBypassCurrentL2
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Bypass L2'
+          preprocessing:
+            -
+              type: MULTIPLIER
+              parameters:
+                - '0.1'
+        -
+          uuid: 3a7b4bbe915a4f8ea2a439556d76c1a1
+          name: 'BypassCurrent L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.3.3
+          key: upsBypassCurrentL3
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Bypass L3'
+          preprocessing:
+            -
+              type: MULTIPLIER
+              parameters:
+                - '0.1'
+        -
+          uuid: 54965337cc0b4b2488dc1a2f2642b0d6
+          name: 'BypassVoltage L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.2.1
+          key: upsBypassVoltageL1
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Bypass Spannung L1'
+        -
+          uuid: f6563e40265a47c2a2ad0e7b485b4787
+          name: 'BypassVoltage L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.2.2
+          key: upsBypassVoltageL2
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Bypass Spannung L2'
+        -
+          uuid: 841246d2b09949e092eb255aa29f5018
+          name: 'BypassVoltage L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.5.3.1.2.3
+          key: upsBypassVoltageL3
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Bypass Spannung L3'
+        -
+          uuid: 5c8457836df04f7285d7b9155325cf36
+          name: ChargeRemaining
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.2.4.0
+          key: upsEstimatedChargeRemaining
+          delay: '60'
+          history: 7d
+          units: '%'
+          description: 'Ladestatus der USV-Batterie in %'
+          triggers:
+            -
+              uuid: 249170170cf74768b8b46d1cec6e495b
+              expression: 'last(/USV Benning/upsEstimatedChargeRemaining)<85'
+              name: 'Charge Remaining < 85%'
+              priority: HIGH
+        -
+          uuid: a2cf59aaccb641df8c99b5ab651b1b5c
+          name: 'InputCurrent L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.4.1
+          key: upsInputCurrentL1
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output Eingang L1'
+        -
+          uuid: b3041213f230423482ff17f5f596bc43
+          name: 'InputCurrent L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.4.2
+          key: upsInputCurrentL2
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output Eingang L2'
+        -
+          uuid: 192ff2afc793455295e8600d8f441042
+          name: 'InputCurrent L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.4.3
+          key: upsInputCurrentL3
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output Eingang L3'
+        -
+          uuid: c65e9478a7f54c40b4857fd5503726b8
+          name: 'InputTruePower L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.5.1
+          key: upsInputTruePowerL1
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'True Power Eingang L1'
+        -
+          uuid: 72598ed1bd31468191dccece255af370
+          name: 'InputTruePower L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.5.2
+          key: upsInputTruePowerL2
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'True Power Eingang L2'
+        -
+          uuid: c9e467835a7749c7baea4c90f29b89e3
+          name: 'InputTruePower L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.5.3
+          key: upsInputTruePowerL3
+          delay: '60'
+          history: 7d
+          units: W
+          description: 'True Power Eingang L3'
+        -
+          uuid: 76057e08c6a5407c848180cac6d2c47d
+          name: 'InputVoltage L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.3.1
+          key: upsInputVoltageL1
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Eingang L1'
+        -
+          uuid: f6532f4e83d441908cf37bcf3a0c0fc5
+          name: 'InputVoltage L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.3.2
+          key: upsInputVoltageL2
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Eingang L2'
+        -
+          uuid: 156bb33dbd974109886abe8c278e8702
+          name: 'InputVoltage L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.3.3.1.3.3
+          key: upsInputVoltageL3
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Eingang L3'
+        -
+          uuid: c0035b61d2534fa99ecb2ceae46e01c9
+          name: 'OutputCurrent L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.3.1
+          key: upsOutputCurrentL1
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output L1'
+        -
+          uuid: b8652d7fd68447918ec6aeb226379147
+          name: 'OutputCurrent L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.3.2
+          key: upsOutputCurrentL2
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output L2'
+        -
+          uuid: 78164f54d45d42f5a68e80a1decae7c9
+          name: 'OutputCurrent L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.3.3
+          key: upsOutputCurrentL3
+          delay: '60'
+          history: 7d
+          units: A
+          description: 'Current Output L3'
+        -
+          uuid: 083c7f1915ee4af18a832fc7d89dccf4
+          name: OutputSource
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.1.0
+          key: upsOutputSource
+          delay: '60'
+          history: 7d
+          description: 'Status der USV-Batterie'
+          valuemap:
+            name: upsOutputSourceBenning
+          triggers:
+            -
+              uuid: 172647ca49e34797b4712206c5f3a9e3
+              expression: 'last(/USV Benning/upsOutputSource)<>3'
+              name: OutputSource
+              priority: WARNING
+        -
+          uuid: 9e5e2f72c6354d80a9eb918f7792934b
+          name: 'OutputVoltage L1'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.2.1
+          key: upsOutputVoltageL1
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Ausgang L1'
+        -
+          uuid: 63affa0867664f99af8aa290815be2fc
+          name: 'OutputVoltage L2'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.2.2
+          key: upsOutputVoltageL2
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Ausgang L2'
+        -
+          uuid: 3e23772cf49b4431bf302af12ab46ae2
+          name: 'OutputVoltage L3'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.2.1.33.1.4.4.1.2.3
+          key: upsOutputVoltageL3
+          delay: '60'
+          history: 7d
+          units: V
+          description: 'Spannung Ausgang L3'
+      valuemaps:
+        -
+          uuid: b4330203445940f19f56a19502ff0721
+          name: upsBattStatusBenning
+          mappings:
+            -
+              value: '2'
+              newvalue: Normal
+            -
+              value: '3'
+              newvalue: Low
+            -
+              value: '4'
+              newvalue: Depleted
+        -
+          uuid: 8d77d8c2462e404ab0b37f3874eaf50a
+          name: upsOutputSourceBenning
+          mappings:
+            -
+              value: '1'
+              newvalue: other
+            -
+              value: '2'
+              newvalue: none
+            -
+              value: '3'
+              newvalue: normal
+            -
+              value: '4'
+              newvalue: bypass
+            -
+              value: '5'
+              newvalue: battery
+            -
+              value: '6'
+              newvalue: booster
+            -
+              value: '7'
+              newvalue: reducer
+  graphs:
+    -
+      uuid: c8489614860f4023a898c7dba4aaa72d
+      name: '% Charge'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          drawtype: FILLED_REGION
+          color: C80000
+          item:
+            host: 'USV Benning'
+            key: upsEstimatedChargeRemaining
+    -
+      uuid: 73e02840cb6f4c3d8018a9d3531549b7
+      name: 'Current All Phases'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          drawtype: BOLD_LINE
+          color: 99FF99
+          item:
+            host: 'USV Benning'
+            key: upsOutputCurrentL1
+        -
+          sortorder: '1'
+          drawtype: BOLD_LINE
+          color: 66CC66
+          item:
+            host: 'USV Benning'
+            key: upsOutputCurrentL2
+        -
+          sortorder: '2'
+          drawtype: BOLD_LINE
+          color: '336600'
+          item:
+            host: 'USV Benning'
+            key: upsOutputCurrentL3
+        -
+          sortorder: '3'
+          drawtype: BOLD_LINE
+          color: FF66FF
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL1
+        -
+          sortorder: '4'
+          drawtype: BOLD_LINE
+          color: '990099'
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL2
+        -
+          sortorder: '5'
+          drawtype: BOLD_LINE
+          color: 6600CC
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL3
+    -
+      uuid: d93d1f71efd4428f8e7ac6f6296448b2
+      name: 'Input Current'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          drawtype: BOLD_LINE
+          color: FF66FF
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL1
+        -
+          sortorder: '1'
+          drawtype: BOLD_LINE
+          color: '990099'
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL2
+        -
+          sortorder: '2'
+          drawtype: GRADIENT_LINE
+          color: 6600CC
+          item:
+            host: 'USV Benning'
+            key: upsInputCurrentL3
+    -
+      uuid: 3301ac41f4ab44929b7e6069e0f156d5
+      name: 'Voltage All Phases'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          drawtype: BOLD_LINE
+          color: 99FF99
+          item:
+            host: 'USV Benning'
+            key: upsInputVoltageL1
+        -
+          sortorder: '1'
+          drawtype: BOLD_LINE
+          color: 66CC66
+          item:
+            host: 'USV Benning'
+            key: upsInputVoltageL2
+        -
+          sortorder: '2'
+          drawtype: BOLD_LINE
+          color: '336600'
+          item:
+            host: 'USV Benning'
+            key: upsInputVoltageL3
+        -
+          sortorder: '3'
+          drawtype: BOLD_LINE
+          color: FF66FF
+          item:
+            host: 'USV Benning'
+            key: upsOutputVoltageL1
+        -
+          sortorder: '4'
+          drawtype: BOLD_LINE
+          color: '990099'
+          item:
+            host: 'USV Benning'
+            key: upsOutputVoltageL2
+        -
+          sortorder: '5'
+          drawtype: BOLD_LINE
+          color: 6600CC
+          item:
+            host: 'USV Benning'
+            key: upsOutputVoltageL3

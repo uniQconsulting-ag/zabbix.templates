@@ -1,0 +1,580 @@
+zabbix_export:
+  version: '6.0'
+  date: '2023-07-10T08:54:33Z'
+  groups:
+    -
+      uuid: 3405b12be1314d39a729d0ba2c72743d
+      name: Templates/Import
+  templates:
+    -
+      uuid: 4cac284d54fc4925a5ee5df2a66f4a5e
+      template: 'RNX Rack PDU'
+      name: 'RNX Rack PDU'
+      groups:
+        -
+          name: Templates/Import
+      items:
+        -
+          uuid: 2e2b08240c6444008090dd87c6fed2f1
+          name: 'ICM Firmware'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.6.2.1.9.1
+          key: icm.firmware
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: a0a4b5ab4869470a963abfe2a02fe48c
+          name: 'ICM Lot Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.6.2.1.7.1
+          key: icm.lot.number
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: e6eed09e51a84ef599b7a84d3f3cefac
+          name: 'ICM Part Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.6.2.1.5.1
+          key: icm.part.number
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: fc224bab938d4b0b8f3091f43152b41a
+          name: 'ICM Serial Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.6.2.1.5.1
+          key: icm.serial.number
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: 55cf0e8867cf4b26ad3bfa41b0ac396f
+          name: 'ICM System Name'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.6.2.1.2.1
+          key: icm.system.name
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: ffd21f32ec124fecb9d1f09c1b63ea52
+          name: Current
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.51.1
+          key: pdu.current
+          delay: 5m
+          history: 30d
+          trends: '0'
+        -
+          uuid: bc6fa187f70149d78e659e6bae9c8f7f
+          name: 'Custom Name'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.3.1
+          key: pdu.customname
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: becfebab7c6d489fb60c95ea650679bf
+          name: Description
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.4.1
+          key: pdu.description
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: ed3ebed18f694bdb80147a0743d26289
+          name: 'Meter Data Quality'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.50.1
+          key: pdu.meter.data.quality
+          delay: 2h
+          valuemap:
+            name: 'RNX PDU Condition'
+        -
+          uuid: c14873b2b3454d4792792e169fd14f9c
+          name: 'Lot Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.7.1
+          key: pdu.number.lot
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: 67137b5c8eac4e4cb026dd1191f6119f
+          name: 'Part Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.6.1
+          key: pdu.number.part
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: 10cea795819945d68bbb5e3b1202d16e
+          name: 'Serial Number'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.5.1
+          key: pdu.number.serial
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: a7eaf89ddc194292b30945202b8673df
+          name: 'Apperent Power'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.54.1
+          key: pdu.power.apperent
+          delay: 5m
+          history: 30d
+          trends: '0'
+        -
+          uuid: cb84e10c5fe64a2d9b8ac9e0589c021e
+          name: 'Power Factor'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.59.1
+          key: pdu.power.factor
+          delay: 5m
+          history: 30d
+          trends: '0'
+          value_type: FLOAT
+        -
+          uuid: bd62566ca44d4b65ba460fb87cc7b62d
+          name: 'Reactive Power'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.55.1
+          key: pdu.power.reactive
+          delay: 5m
+          history: 30d
+          trends: '0'
+        -
+          uuid: 86b9c325b75849b0be335ce9e95117d5
+          name: 'System Name'
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.2.1
+          key: pdu.systemname
+          delay: 2h
+          trends: '0'
+          value_type: TEXT
+        -
+          uuid: e36d509cb1d6456988c3023032b8e603
+          name: Voltage
+          type: SNMP_AGENT
+          snmp_oid: .1.3.6.1.4.1.55108.2.1.2.1.52.1
+          key: pdu.voltage
+          delay: 5m
+          history: 30d
+          trends: '0'
+      discovery_rules:
+        -
+          uuid: af91e99eec54411ead872118ca5a403f
+          name: 'Inlet Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#INLETNAME},.1.3.6.1.4.1.55108.2.2.2.1.2,{#INLETCNAME},.1.3.6.1.4.1.55108.2.2.2.1.3,{#INLETDESC},.1.3.6.1.4.1.55108.2.2.2.1.4]'
+          key: inlet.discovery
+          delay: 12h
+          item_prototypes:
+            -
+              uuid: 58595ca0200c4f578733305cadb4eaec
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Admin Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.80.{#SNMPINDEX}'
+              key: 'inlet.adminstatus[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: d5b94686cc2d47959fd94220df397422
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Condition'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.82.{#SNMPINDEX}'
+              key: 'inlet.condition[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: a9ef7b4fca9a41ccb2dc03c3464b9862
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Current'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.51.{#SNMPINDEX}'
+              key: 'inlet.current[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: A
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+            -
+              uuid: 54d993dfb60f48fba007a7cdc53f7c9c
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Meter Data Quality'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.50.{#SNMPINDEX}'
+              key: 'inlet.meter.data.quality[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: 4a9bd2fe1ddd4b56899c7e65076c34cf
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Oper Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.81.{#SNMPINDEX}'
+              key: 'inlet.operstatus[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: 99495ed798634edf874d9f56a66e8cc5
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Active Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.53.{#SNMPINDEX}'
+              key: 'inlet.power.active[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: df602aec19a24053bcaf1ac3f963f3b2
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Apperent Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.54.{#SNMPINDEX}'
+              key: 'inlet.power.apperent[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: 5122c140e2c14c148abbb5744d203ccd
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Power Factor'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.59.{#SNMPINDEX}'
+              key: 'inlet.power.factor[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              value_type: FLOAT
+            -
+              uuid: 34c22ae770f3453496980d152e5bd7fc
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Reactive Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.55.{#SNMPINDEX}'
+              key: 'inlet.power.reactive[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: cf01f86d2f294e71957c90b7e5c836f0
+              name: '{#INLETNAME} {#INLETCNAME} ({#INLETDESC}) Voltage'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.2.2.1.52.{#SNMPINDEX}'
+              key: 'inlet.voltage[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: V
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+        -
+          uuid: 4babf262c6924df0989838c254b5e356
+          name: 'Module Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#MODULENAME},.1.3.6.1.4.1.55108.2.8.2.1.2,{#MODULECNAME},.1.3.6.1.4.1.55108.2.8.2.1.3,{#MODULEDESC},.1.3.6.1.4.1.55108.2.8.2.1.4]'
+          key: module.discovery
+          delay: 12h
+          item_prototypes:
+            -
+              uuid: 12cb6312eb7d442dae26c05df58df2bf
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Admin Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.80.{#SNMPINDEX}'
+              key: 'module.adminstatus[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: 90892cf3fab7403ba626120153fc0dc3
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Condition'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.82.{#SNMPINDEX}'
+              key: 'module.condition[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: 4d4617e89fd84c24b4dafad4bade5213
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Current'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.51.{#SNMPINDEX}'
+              key: 'module.current[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: A
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+            -
+              uuid: 10d0c3b566bf4bb2aee36c3228382bed
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Firmware'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.9.{#SNMPINDEX}'
+              key: 'module.firmware[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+            -
+              uuid: 569680c9f3a84b049f815240d2a18841
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Meter Data Quality'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.50.{#SNMPINDEX}'
+              key: 'module.meter.data.quality[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: 4146d719ecf14124ae1f0b800db3dba8
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Lot Number'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.7.{#SNMPINDEX}'
+              key: 'module.number.lot[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+            -
+              uuid: 851e627e64d44c3f82dd0d697a3a9565
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Part Number'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.6.{#SNMPINDEX}'
+              key: 'module.number.part[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+            -
+              uuid: 0c187cc31c5b49ada6ab7bb23d3bea43
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Serial Number'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.5.{#SNMPINDEX}'
+              key: 'module.number.serial[{#SNMPINDEX}]'
+              delay: 1h
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+            -
+              uuid: 7daf741a359b4b41856ff8dcdbbfb621
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Oper Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.81.{#SNMPINDEX}'
+              key: 'module.operstatus[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: 8dc0c76280384e8ca104aa42501bb0f6
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Active Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.53.{#SNMPINDEX}'
+              key: 'module.power.active[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+            -
+              uuid: 8976edbc7b8c4292980fcf19e128e5e9
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Apperent Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.54.{#SNMPINDEX}'
+              key: 'module.power.apperent[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: d61230e5ad654e159e41de4c97e6fbbb
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Power Factor'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.59.{#SNMPINDEX}'
+              key: 'module.power.factor[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              value_type: FLOAT
+            -
+              uuid: 0b496ac170774c5faa0b490009f086cf
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Reactive Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.55.{#SNMPINDEX}'
+              key: 'module.power.reactive[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: 53464abc6fac41d6a282195b0a8fe3f3
+              name: '{#MODULENAME} {#MODULECNAME} ({#MODULEDESC}) Voltage'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.8.2.1.52.{#SNMPINDEX}'
+              key: 'module.voltage[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: V
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+        -
+          uuid: 83ad5f171b5b4f04a70ccb37ad778eab
+          name: 'Outlets Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#OUTLETNAME},.1.3.6.1.4.1.55108.2.9.2.1.2,{#OUTLETCNAME},.1.3.6.1.4.1.55108.2.9.2.1.3,{#OUTLETDESC},.1.3.6.1.4.1.55108.2.9.2.1.4]'
+          key: outlet.discovery
+          delay: 12h
+          item_prototypes:
+            -
+              uuid: 4ebd1686c1fe4aa0b311294a558438bb
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Admin Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.80.{#SNMPINDEX}'
+              key: 'outlet.adminstatus[{#SNMPINDEX}]'
+              delay: 1h
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: 7b2816248a284506891f0ab32d8e28d0
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Condition'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.82.{#SNMPINDEX}'
+              key: 'outlet.condition[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: 87cac64aa4b64670b55254200914a574
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Current'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.51.{#SNMPINDEX}'
+              key: 'outlet.current[{#SNMPINDEX}]'
+              history: 30d
+              trends: 180d
+              units: A
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+            -
+              uuid: 5919f914f8bc4881b1e39cac4ba13959
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Meter Data Quality'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.50.{#SNMPINDEX}'
+              key: 'outlet.meterdataquality[{#SNMPINDEX}]'
+              delay: 15m
+              history: 30d
+              trends: '0'
+              valuemap:
+                name: 'RNX PDU Condition'
+            -
+              uuid: c95c62d55dd84c3fa7dde68a2646ceff
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Oper Status'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.81.{#SNMPINDEX}'
+              key: 'outlet.operstatus[{#SNMPINDEX}]'
+              delay: 5m
+              valuemap:
+                name: 'RNX PDU Status'
+            -
+              uuid: 85a6cd72e74b4f1ab0c735be45a3f80c
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Active Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.53.{#SNMPINDEX}'
+              key: 'outlet.power.active[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: b0a920f69cf14ce8920f2ee427d6fdf6
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Apperent Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.54.{#SNMPINDEX}'
+              key: 'outlet.power.apperent[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: 4e2dd3886c89422a8c01e879350b21e3
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Reactive Power'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.55.{#SNMPINDEX}'
+              key: 'outlet.power.reactive[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: W
+            -
+              uuid: 52e7dfee59364638909a46a3b56c9eda
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Power Factor'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.59.{#SNMPINDEX}'
+              key: 'outlet.powerfactor[{#SNMPINDEX}]'
+              delay: 5m
+              history: 30d
+              trends: '0'
+              value_type: FLOAT
+            -
+              uuid: 78c05fd8b6d547d2b7adf0a5c01f0516
+              name: '{#OUTLETNAME} {#OUTLETCNAME} ({#OUTLETDESC}) Voltage'
+              type: SNMP_AGENT
+              snmp_oid: '.1.3.6.1.4.1.55108.2.9.2.1.52.{#SNMPINDEX}'
+              key: 'outlet.voltage[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              units: V
+              preprocessing:
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '0.001'
+      valuemaps:
+        -
+          uuid: f2b62fb7d37c4c01b13bcdf6527bbce9
+          name: 'RNX PDU Condition'
+          mappings:
+            -
+              value: '0'
+              newvalue: ok
+            -
+              value: '1'
+              newvalue: failed
+            -
+              value: '2'
+              newvalue: unknown
+        -
+          uuid: 85246874239a49eeaf92032453f33034
+          name: 'RNX PDU Status'
+          mappings:
+            -
+              value: '0'
+              newvalue: 'off'
+            -
+              value: '1'
+              newvalue: 'on'
+            -
+              value: '2'
+              newvalue: unknown

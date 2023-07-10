@@ -1,0 +1,316 @@
+zabbix_export:
+  version: '5.4'
+  date: '2022-01-27T10:59:17Z'
+  groups:
+    -
+      uuid: c5c6251da5fb4a21ae6a5f9331073e70
+      name: Templates/Import
+  templates:
+    -
+      uuid: f856c956303d4f228e675e1d329fd7a4
+      template: 'MS Exchange'
+      name: 'MS Exchange'
+      description: 'MS Exchange Queue & DAG'
+      groups:
+        -
+          name: Templates/Import
+      items:
+        -
+          uuid: 0f8a51a877e545c79e8d3193cc8ed043
+          name: 'Edge Memory Usage'
+          key: edgeTransportMemory
+          history: 30d
+          value_type: FLOAT
+          units: '%'
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+          triggers:
+            -
+              uuid: bf3d11f3d20b42b7a0246c65da981612
+              expression: 'last(/MS Exchange/edgeTransportMemory,#3)>0.7'
+              name: 'High Memory Usage by EdgeTransport'
+              priority: AVERAGE
+            -
+              uuid: df71f84352e44571b677c6c0d168637a
+              expression: 'last(/MS Exchange/edgeTransportMemory,#3)>0.5'
+              name: 'Increased Memory Usage by EdgeTransport'
+              priority: WARNING
+        -
+          uuid: 1a2cefc519a04364bff8599208bb90b5
+          name: 'Exchange Queue Incoming'
+          key: 'exchangeQueueLength[incoming]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: 1adef3997e9e4b1caacf9e5d0fd102d8
+              expression: 'last(/MS Exchange/exchangeQueueLength[incoming],#5)>{$EXCHANGE_QUEUE_INCOMING_FAIL}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[incoming],#3)<{$EXCHANGE_QUEUE_INCOMING_FAIL}'
+              name: 'High Incomong Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: 9c460dd37b184bf686f0b6be0df14cd0
+              expression: 'last(/MS Exchange/exchangeQueueLength[incoming],#5)>{$EXCHANGE_QUEUE_INCOMING_WARN}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[incoming],#3)<{$EXCHANGE_QUEUE_INCOMING_WARN}'
+              name: 'Increased Incomong Queue Count for 5min'
+              priority: WARNING
+        -
+          uuid: 4c49fa88ddde4a2d98cfa3ec482369a9
+          name: 'Exchange Queue Outgoing'
+          key: 'exchangeQueueLength[outgoing]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: f484e4ff8cc44bc39d0d9078bdbca9f2
+              expression: 'last(/MS Exchange/exchangeQueueLength[outgoing],#5)>{$EXCHANGE_QUEUE_OUTGOING_FAIL}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[outgoing],#3)<{$EXCHANGE_QUEUE_OUTGOING_FAIL}'
+              name: 'High Outgoing Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: 7cf692a5d29a4237bd11838e73dd8042
+              expression: 'last(/MS Exchange/exchangeQueueLength[outgoing],#5)>{$EXCHANGE_QUEUE_OUTGOING_WARN}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[outgoing],#3)<{$EXCHANGE_QUEUE_OUTGOING_WARN}'
+              name: 'Increased Outgoing Queue Count for 5min'
+              priority: WARNING
+        -
+          uuid: 62e96a7119954a3bb6a4a7a70caaae75
+          name: 'Exchange Queue Poison'
+          key: 'exchangeQueueLength[poison]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: 1343a023344e41409acd2d14697faecd
+              expression: 'last(/MS Exchange/exchangeQueueLength[poison],#1)>{$EXCHANGE_QUEUE_POISON_FAIL}'
+              name: 'High Poison Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: b74dbae5f2ef485b9f731f5d2dcb757c
+              expression: 'last(/MS Exchange/exchangeQueueLength[poison],#1)>{$EXCHANGE_QUEUE_POISON_WARN}'
+              name: 'Increased Poison Queue Count for 5min'
+              priority: WARNING
+        -
+          uuid: d9e55e79fc184addb7967de3c244472a
+          name: 'Exchange Queue Shadow'
+          key: 'exchangeQueueLength[shadow]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: a9db21d61f5e4c81844740bea9c44519
+              expression: 'last(/MS Exchange/exchangeQueueLength[shadow],#5)>{$EXCHANGE_QUEUE_SHADOW_FAIL}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[shadow],#3)<{$EXCHANGE_QUEUE_SHADOW_FAIL}'
+              name: 'High Shadow Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: 31eee84cf9ec4018a9375abdf1ed0a88
+              expression: 'last(/MS Exchange/exchangeQueueLength[shadow],#12)>{$EXCHANGE_QUEUE_SHADOW_WARN}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[shadow],#3)<{$EXCHANGE_QUEUE_SHADOW_WARN}'
+              name: 'Increased Shadow Queue Count for 5min'
+              priority: WARNING
+        -
+          uuid: bd36bbc10e1f40238e4fab0780657ed2
+          name: 'Exchange Queue Submission'
+          key: 'exchangeQueueLength[submission]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: a121e64cd25b47c295ceafcfa541614b
+              expression: 'last(/MS Exchange/exchangeQueueLength[submission],#5)>{$EXCHANGE_QUEUE_SUBMISSION_FAIL}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[submission],#3)<{$EXCHANGE_QUEUE_SUBMISSION_FAIL}'
+              name: 'High Submission Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: c3b54fd3f6974e71b6b8405d42883da9
+              expression: 'last(/MS Exchange/exchangeQueueLength[submission],#5)>{$EXCHANGE_QUEUE_SUBMISSION_WARN}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[submission],#3)<{$EXCHANGE_QUEUE_SUBMISSION_WARN}'
+              name: 'Increased Submission Queue Count for 5min'
+              priority: WARNING
+        -
+          uuid: b627cf0e5b57470f8671e7be41e36b3c
+          name: 'Exchange Queue Unreachable'
+          key: 'exchangeQueueLength[unreachable]'
+          value_type: FLOAT
+          tags:
+            -
+              tag: Application
+              value: 'MS Exchange'
+            -
+              tag: Application
+              value: 'MS Exchange Queue'
+          triggers:
+            -
+              uuid: 202e68afc35b44cfbbb91a15ec3ed11b
+              expression: 'last(/MS Exchange/exchangeQueueLength[unreachable],#5)>{$EXCHANGE_QUEUE_UNREACH_FAIL}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[unreachable],#3)<{$EXCHANGE_QUEUE_UNREACH_FAIL}'
+              name: 'High Unreachable Queue Count for 5min'
+              priority: AVERAGE
+            -
+              uuid: b8ebe6c935d841b8b71ef59190cffa99
+              expression: 'last(/MS Exchange/exchangeQueueLength[unreachable],#5)>{$EXCHANGE_QUEUE_UNREACH_WARN}'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/MS Exchange/exchangeQueueLength[unreachable],#3)<{$EXCHANGE_QUEUE_UNREACH_WARN}'
+              name: 'Increased Unreachable Queue Count for 5min'
+              priority: WARNING
+      discovery_rules:
+        -
+          uuid: dc7bc0331ba34946ba142f66853164ed
+          name: 'Exchange DB Discover'
+          key: exchangeDBDiscovery
+          delay: 6h
+          item_prototypes:
+            -
+              uuid: 27c91bf3fe16405e8de1dbad07324f7b
+              name: 'Echange DB HealthState {#DBNAME}'
+              key: 'exchangeDBState[{#DBNAME}]'
+              value_type: FLOAT
+              tags:
+                -
+                  tag: Application
+                  value: 'MS Exchange DBs'
+              trigger_prototypes:
+                -
+                  uuid: 6dc434e27127422f825bfc3e028a44d6
+                  expression: 'last(/MS Exchange/exchangeDBState[{#DBNAME}],#3)<1'
+                  recovery_mode: RECOVERY_EXPRESSION
+                  recovery_expression: 'last(/MS Exchange/exchangeDBState[{#DBNAME}],#2)=1'
+                  name: 'DB Health State not OK'
+                  priority: AVERAGE
+          lld_macro_paths:
+            -
+              lld_macro: '{#DBNAME}'
+              path: $.Name
+      macros:
+        -
+          macro: '{$EXCHANGE_QUEUE_INCOMING_FAIL}'
+          value: '100'
+          description: 'After what message-count in incoming should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_INCOMING_WARN}'
+          value: '50'
+          description: 'After what message-count in incoming should a warning be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_OUTGOING_FAIL}'
+          value: '100'
+          description: 'After what message-count in outgoing should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_OUTGOING_WARN}'
+          value: '50'
+          description: 'After what message-count in outgoing should a warning be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_POISON_FAIL}'
+          value: '3'
+          description: 'After what message-count in poison should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_POISON_WARN}'
+          value: '1'
+          description: 'After what message-count in poison should a warning be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_SHADOW_FAIL}'
+          value: '100'
+          description: 'After what message-count in shadow should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_SHADOW_WARN}'
+          value: '50'
+          description: 'After what message-count in shadow should a warning be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_SUBMISSION_FAIL}'
+          value: '100'
+          description: 'After what message-count in submission should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_SUBMISSION_WARN}'
+          value: '50'
+          description: 'After what message-count in submission should a warning be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_UNREACH_FAIL}'
+          value: '30'
+          description: 'After what message-count in unavailable should a issue be triggered'
+        -
+          macro: '{$EXCHANGE_QUEUE_UNREACH_WARN}'
+          value: '10'
+          description: 'After what message-count in unavailable should a warning be triggered'
+  graphs:
+    -
+      uuid: 66e7bd28e88c4ab5b6c3421ef9ab7772
+      name: Queues
+      height: '300'
+      graph_items:
+        -
+          sortorder: '1'
+          color: FC6EA3
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[submission]'
+        -
+          sortorder: '2'
+          color: 199C0D
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[incoming]'
+        -
+          sortorder: '3'
+          color: 2774A4
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[outgoing]'
+        -
+          sortorder: '4'
+          color: F63100
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[poison]'
+        -
+          sortorder: '5'
+          color: F7941D
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[unreachable]'
+        -
+          sortorder: '6'
+          color: 6C59DC
+          item:
+            host: 'MS Exchange'
+            key: 'exchangeQueueLength[shadow]'
